@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=11 format=1]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/male_torso.png" type="Texture" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://sprites/male_hand_shoulder.png" type="Texture" id=4]
 [ext_resource path="res://sprites/male_hand_arm.png" type="Texture" id=5]
-[ext_resource path="res://sprites/male_bat.png" type="Texture" id=6]
+[ext_resource path="res://weapon.gd" type="Script" id=6]
+[ext_resource path="res://sprites/male_bat.png" type="Texture" id=7]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -94,6 +95,8 @@ softness = 0.0
 
 [node name="body" type="Node2D" parent="."]
 
+editor/display_folded = true
+
 [node name="torso" type="Sprite" parent="body"]
 
 texture = ExtResource( 2 )
@@ -170,19 +173,20 @@ bounce = 0.0
 gravity_scale = 1.0
 custom_integrator = false
 continuous_cd = 0
-contacts_reported = 0
-contact_monitor = false
+contacts_reported = 5
+contact_monitor = true
 sleeping = false
 can_sleep = true
 velocity/linear = Vector2( 0, 0 )
 velocity/angular = 0.0
 damp_override/linear = -1.0
 damp_override/angular = 6.0
+script/script = ExtResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="mace"]
 
 transform/pos = Vector2( -0.710342, 30.0523 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mace"]
 

@@ -14,6 +14,8 @@ var max_arm_length = 0
 
 var look_right = false
 
+var health = 100
+
 func _ready():
 	set_fixed_process(true)
 	max_arm_length = (get_node("max_arm_length").get_global_pos() - get_node("body/arms").get_global_pos()).length()
@@ -50,10 +52,9 @@ func _fixed_process(delta):
 
 	var jump = Input.is_action_pressed("jump");
 	var space_state = get_world_2d().get_direct_space_state()
-	var floor_cast = space_state.intersect_ray(get_global_pos(), get_node("bottom").get_global_pos(), [self])
+	var floor_cast = space_state.intersect_ray(get_global_pos(), get_node("bottom").get_global_pos(), [self], 3)
 	var has_floor = (!floor_cast.empty()) && get_colliding_bodies().size() > 0
 	if(jump && has_floor && current_jump_delay <= 0):
-		print("jump", floor_cast)
 		current_jump_delay = next_jump_delay
 		apply_impulse(Vector2(0,0), Vector2(0,-jump_imp)) 
 	elif(current_jump_delay > 0):
@@ -96,4 +97,9 @@ func _fixed_process(delta):
 			
 	pass
 
+func on_damage(dmg):
+	health -= dmg
+	print("Ouchd! ", dmg)
+	if(health < 0):
+		print("You are dead")
 

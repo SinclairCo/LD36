@@ -7,6 +7,7 @@ var random_target_timer = 0
 var random_target_pos = Vector2(0,0)
 
 const player_class = preload("res://player.gd") # Check if we collide with player
+var dead_body = preload("res://dead_monster.tscn") 
 
 var health = 100
 var speed = 800
@@ -22,6 +23,7 @@ var mirrored = false
 var dmg_timer = 1
 var invincible_time = 0.15
 var invincible_timer = 0
+var dead = false
 
 func _ready():
 	set_fixed_process(true)
@@ -96,11 +98,17 @@ func on_damage(dmg):
 	invincible_timer = invincible_time
 	
 	health -= dmg
-	var old_text = ""
-	if(dmg_timer > 0):
-		old_text = get_node("dmg").get_text()
-	get_node("dmg").set_text(old_text + " " + str(int(dmg)))
+	#var old_text = ""
+	#if(dmg_timer > 0):
+	#	old_text = get_node("dmg").get_text()
+	get_node("dmg").set_text(str(int(dmg)))
 	dmg_timer = 1
 	print("uffff ", dmg)
-	if(health < 0):
-		print("Killed")
+	if(health < 0 && !dead):
+		dead = true
+		var corpse = dead_body.instance()
+		corpse.set_global_pos(get_global_pos())
+		if(!look_right):
+			corpse.set_rot(-PI)
+		get_tree().get_current_scene().add_child(corpse)
+		queue_free()

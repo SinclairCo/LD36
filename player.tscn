@@ -100,6 +100,8 @@ softness = 0.0
 
 [node name="body" type="Node2D" parent="."]
 
+editor/display_folded = true
+
 [node name="torso" type="Sprite" parent="body"]
 
 texture = ExtResource( 2 )
@@ -129,6 +131,7 @@ offset = Vector2( -55.985, 0.106422 )
 
 [node name="mace_joint_base" type="RigidBody2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( -169, 27 )
 input/pickable = false
 shapes/0/shape = SubResource( 2 )
@@ -160,6 +163,7 @@ _update_shape_index = 0
 
 [node name="mace" type="RigidBody2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( -170.895, -79.8697 )
 input/pickable = false
 shapes/0/shape = SubResource( 3 )
@@ -176,7 +180,7 @@ friction = 1.0
 bounce = 0.0
 gravity_scale = 1.0
 custom_integrator = false
-continuous_cd = 0
+continuous_cd = 1
 contacts_reported = 5
 contact_monitor = true
 sleeping = false

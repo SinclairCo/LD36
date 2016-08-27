@@ -1,9 +1,9 @@
 
 extends RigidBody2D
 
-var run_speed = 300
+var run_speed = 700
 var acceleration = 5000;
-var jump_imp = 1000;
+var jump_imp = 1500;
 
 var next_jump_delay = 0.080;
 var current_jump_delay = 0;

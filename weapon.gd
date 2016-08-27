@@ -14,13 +14,16 @@ func _fixed_process(delta):
 func _integrate_forces(state):
 	for i in range(state.get_contact_count()):
 		var body = state.get_contact_collider_object(i)
-		if(body.get("monster_tag")):
+		var shape = state.get_contact_local_shape(i)
+		if(body.get("monster_tag") && shape == 0):
 			#print("force ", state.get_contact_local_pos(i))
 			contact_pos = state.get_contact_local_pos(i)
 			var offset = contact_pos - get_global_pos()
 			dmg_factor = get_linear_velocity() + (get_angular_velocity()*offset).rotated(PI/2)
 			#print("dmg fac ", dmg_factor.length()/100)
-			body.on_damage(dmg_factor.length())
+			var dmg = dmg_factor.length()/100
+			if(dmg > 10):
+				body.on_damage(dmg)
 	
 func _draw():
 	if(contact_pos != null):

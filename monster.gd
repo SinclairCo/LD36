@@ -17,12 +17,26 @@ var attack_cooldown = -1;
 
 var look_right = false
 
+var mirrored = false
+
+var dmg_timer = 1
+var invincible_time = 0.15
+var invincible_timer = 0
+
 func _ready():
 	set_fixed_process(true)
 
 func _fixed_process(delta):
+	if(dmg_timer > 0):
+		dmg_timer-=delta
+		if(dmg_timer <= 0):
+			get_node("dmg").set_text("")
+	
 	if(health < 0):
 		return
+	
+	if(invincible_timer > 0):
+		invincible_timer-=delta
 	
 	var target_pos
 	if(get_tree().get_current_scene().has_node("player")):
@@ -47,11 +61,19 @@ func _fixed_process(delta):
 	apply_impulse(Vector2(0,0), impulse)
 	if(look_right):
 		get_node("body").set_scale(Vector2(1,1))
+		if(mirrored):
+			mirrored = false
+			mirror_collision(get_node("legs_collider"))
+			mirror_collision(get_node("body_collider"))
 	else:
 		get_node("body").set_scale(Vector2(-1,1))
+		if(!mirrored):
+			mirrored = true
+			mirror_collision(get_node("legs_collider"))
+			mirror_collision(get_node("body_collider"))
 
-	var colliding_bodies = get_colliding_bodies();
-	
+	###Process collisions
+	var colliding_bodies = get_colliding_bodies();	
 	for body in colliding_bodies:
 		if body extends player_class:
 			if(attack_cooldown < 0):
@@ -63,7 +85,22 @@ func _fixed_process(delta):
 	if(attack_cooldown >= 0):
 		attack_cooldown -= delta
 		
+func mirror_collision(collider):
+	collider.set_pos(collider.get_pos()*Vector2(-1,1))
+	collider.set_rot(-collider.get_rot())
+		
 func on_damage(dmg):
+	
+	if(invincible_timer > 0):
+		return
+	invincible_timer = invincible_time
+	
 	health -= dmg
+	var old_text = ""
+	if(dmg_timer > 0):
+		old_text = get_node("dmg").get_text()
+	get_node("dmg").set_text(old_text + " " + str(int(dmg)))
+	dmg_timer = 1
+	print("uffff ", dmg)
 	if(health < 0):
 		print("Killed")

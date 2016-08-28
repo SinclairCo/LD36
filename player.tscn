@@ -25,7 +25,7 @@ custom_solver_bias = 0.0
 radius = 45.6895
 height = 213.926
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=2]
 
 resource/name = "death"
 length = 1.4
@@ -202,9 +202,8 @@ tracks/33/interp = 1
 tracks/33/imported = false
 tracks/33/keys = { "times":FloatArray( 1.4 ), "transitions":FloatArray( 1 ), "update":0, "values":[ -121.646 ] }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 
-resource/name = "rest"
 length = 1.0
 loop = false
 step = 0.1
@@ -369,9 +368,8 @@ tracks/31/interp = 1
 tracks/31/imported = false
 tracks/31/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":0, "values":[ 0.0 ] }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 
-resource/name = "run"
 length = 0.8
 loop = true
 step = 0.1
@@ -516,9 +514,8 @@ tracks/27/interp = 1
 tracks/27/imported = false
 tracks/27/keys = { "times":FloatArray( 0.1, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, -18.0993 ] }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 
-resource/name = "stand"
 length = 0.6
 loop = true
 step = 0.1
@@ -653,18 +650,18 @@ tracks/25/interp = 1
 tracks/25/imported = false
 tracks/25/keys = { "times":FloatArray( 0, 0.3 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, 0.0 ] }
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=6]
 
 custom_solver_bias = 0.0
 radius = 13.6981
 
-[sub_resource type="CapsuleShape2D" id=6]
+[sub_resource type="CapsuleShape2D" id=7]
 
 custom_solver_bias = 0.0
 radius = 32.444
 height = 90.8517
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=8]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 24.8099 )
@@ -744,10 +741,10 @@ softness = 0.0
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/death = SubResource( 8 )
-anims/rest = SubResource( 2 )
-anims/run = SubResource( 3 )
-anims/stand = SubResource( 4 )
+anims/death = SubResource( 2 )
+anims/rest = SubResource( 3 )
+anims/run = SubResource( 4 )
+anims/stand = SubResource( 5 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -757,7 +754,6 @@ autoplay = ""
 
 transform/pos = Vector2( -44.7399, -61.9209 )
 transform/rot = 103.722
-transform/scale = Vector2( 1, 1 )
 texture = ExtResource( 2 )
 offset = Vector2( -34.1236, 17.7673 )
 __meta__ = { "_edit_bone_":true, "_edit_ik_":true }
@@ -766,7 +762,6 @@ __meta__ = { "_edit_bone_":true, "_edit_ik_":true }
 
 transform/pos = Vector2( -64.355, 29.6337 )
 transform/rot = -52.3564
-transform/scale = Vector2( 1, 1 )
 texture = ExtResource( 3 )
 offset = Vector2( -55.985, 0.106422 )
 __meta__ = { "_edit_bone_":true }
@@ -805,7 +800,6 @@ __meta__ = { "_edit_bone_":true }
 [node name="foot_b" type="Sprite" parent="body/thigh_b/leg_b"]
 
 transform/pos = Vector2( 23.9433, 57.8142 )
-transform/scale = Vector2( 1, 1 )
 texture = ExtResource( 8 )
 offset = Vector2( -20.8858, 2.61243 )
 __meta__ = { "_edit_bone_":true }
@@ -868,7 +862,7 @@ offset = Vector2( -55.985, 0.106422 )
 editor/display_folded = true
 transform/pos = Vector2( -169, 27 )
 input/pickable = false
-shapes/0/shape = SubResource( 5 )
+shapes/0/shape = SubResource( 6 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 0
@@ -891,7 +885,7 @@ damp_override/angular = -1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mace_joint_base"]
 
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 trigger = false
 _update_shape_index = 0
 
@@ -899,10 +893,10 @@ _update_shape_index = 0
 
 transform/pos = Vector2( -170.895, -79.8697 )
 input/pickable = false
-shapes/0/shape = SubResource( 6 )
+shapes/0/shape = SubResource( 7 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, -0.209732, -14.8512 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 7 )
+shapes/1/shape = SubResource( 8 )
 shapes/1/transform = Matrix32( 1, 0, 0, 1, -0.44014, 85.314 )
 shapes/1/trigger = false
 collision/layers = 1024
@@ -934,7 +928,7 @@ texture = ExtResource( 13 )
 
 transform/pos = Vector2( -0.209732, -14.8512 )
 z/z = 5
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 trigger = false
 _update_shape_index = 0
 
@@ -942,7 +936,7 @@ _update_shape_index = 0
 
 transform/pos = Vector2( -0.44014, 85.314 )
 z/z = 5
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 trigger = false
 _update_shape_index = 1
 

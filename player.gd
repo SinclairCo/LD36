@@ -16,9 +16,12 @@ var look_right = false
 
 var health = 100
 
+var anim
+
 func _ready():
 	set_fixed_process(true)
 	max_arm_length = (get_node("max_arm_length").get_global_pos() - get_node("body/arms").get_global_pos()).length()
+	anim = get_node("body/anim")
 	pass
 	
 func _fixed_process(delta):
@@ -33,8 +36,12 @@ func _fixed_process(delta):
 	var is_moving = direction.x != 0
 	if(is_moving):
 		look_right = direction.x > 0
+		if(!anim.is_playing() || anim.get_current_animation() != "run"):
+			anim.play("run")
 	
 	if(!is_moving):
+		if(!anim.is_playing() || anim.get_current_animation() != "stand"):
+			anim.play("stand")
 		if(abs(get_linear_velocity().x) > 0.1):
 			apply_impulse(Vector2(0,0), Vector2(-get_linear_velocity().x*get_mass(),0))
 			#print("s ",get_linear_velocity().x)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=1]
+[gd_scene load_steps=22 format=1]
 
 [ext_resource path="res://blocktiles/endwall.png" type="Texture" id=1]
 [ext_resource path="res://blocktiles/tile_foundation.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://blocktiles/bg_skygradient.png" type="Texture" id=11]
 [ext_resource path="res://monster.tscn" type="PackedScene" id=12]
 [ext_resource path="res://effects/bubble.png" type="Texture" id=13]
+[ext_resource path="res://sound/music.ogg" type="AudioStream" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -47,7 +48,7 @@ extents = Vector2( 10, 10 )
 [sub_resource type="RectangleShape2D" id=7]
 
 custom_solver_bias = 0.0
-extents = Vector2( 2.42665, 7.71876 )
+extents = Vector2( 2.42665, 2.43313 )
 
 [node name="arena" type="Node2D"]
 
@@ -502,6 +503,7 @@ _update_shape_index = 0
 
 [node name="BG_decor" type="Node2D" parent="."]
 
+editor/display_folded = true
 z/z = -1000
 z/relative = false
 
@@ -729,12 +731,11 @@ z/relative = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="platforms"]
 
-editor/display_folded = true
 transform/pos = Vector2( -409.823, -260.083 )
 transform/scale = Vector2( 0.445756, 1.36242 )
 input/pickable = false
 shapes/0/shape = SubResource( 7 )
-shapes/0/transform = Matrix32( 145.446, 0, 0, -1.80674, -6.87109, 43.9484 )
+shapes/0/transform = Matrix32( -145.446, 1.27153e-05, -1.18353e-07, -1.3538, -3.12431, 18.9231 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -746,13 +747,12 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/StaticBody2D"]
 
-transform/pos = Vector2( -6.87109, 43.9484 )
+transform/pos = Vector2( -3.12431, 18.9231 )
 transform/rot = 180.0
-transform/scale = Vector2( 145.446, 1.80674 )
+transform/scale = Vector2( 145.446, 1.3538 )
 shape = SubResource( 7 )
 trigger = false
 _update_shape_index = 0
-__meta__ = { "_edit_lock_":true }
 
 [node name="Sprite" type="Sprite" parent="platforms/StaticBody2D"]
 
@@ -768,7 +768,7 @@ transform/pos = Vector2( -649.721, -555.771 )
 transform/scale = Vector2( 0.445756, 1.36242 )
 input/pickable = false
 shapes/0/shape = SubResource( 7 )
-shapes/0/transform = Matrix32( 145.446, 0, 0, -1.80674, -6.87109, 43.9484 )
+shapes/0/transform = Matrix32( -145.446, 1.27153e-05, -1.5795e-07, -1.80674, -6.87109, 43.9484 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -802,7 +802,7 @@ transform/pos = Vector2( -223.333, -964.534 )
 transform/scale = Vector2( 0.445756, 1.36242 )
 input/pickable = false
 shapes/0/shape = SubResource( 7 )
-shapes/0/transform = Matrix32( 145.446, 0, 0, -1.80674, -6.87109, 43.9484 )
+shapes/0/transform = Matrix32( -145.446, 1.27153e-05, -1.5795e-07, -1.80674, -6.87109, 43.9484 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -836,7 +836,7 @@ transform/pos = Vector2( -954.952, -553.437 )
 transform/scale = Vector2( 0.445756, 1.36242 )
 input/pickable = false
 shapes/0/shape = SubResource( 7 )
-shapes/0/transform = Matrix32( 145.446, 0, 0, -1.80674, -6.87109, 43.9484 )
+shapes/0/transform = Matrix32( -145.446, 1.27153e-05, -1.5795e-07, -1.80674, -6.87109, 43.9484 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -870,7 +870,7 @@ transform/pos = Vector2( -3827.59, -673.828 )
 transform/scale = Vector2( 0.519092, 1.15085 )
 input/pickable = false
 shapes/0/shape = SubResource( 7 )
-shapes/0/transform = Matrix32( 145.446, 0, 0, -1.80674, -6.87109, 43.9484 )
+shapes/0/transform = Matrix32( -145.446, 1.27153e-05, -1.5795e-07, -1.80674, -6.87109, 43.9484 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -905,7 +905,7 @@ transform/rot = 0.338877
 transform/scale = Vector2( 0.445756, 1.36242 )
 input/pickable = false
 shapes/0/shape = SubResource( 7 )
-shapes/0/transform = Matrix32( 145.446, 0, 0, -1.80674, -6.87109, 43.9484 )
+shapes/0/transform = Matrix32( -145.446, 1.27153e-05, -1.5795e-07, -1.80674, -6.87109, 43.9484 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -939,7 +939,7 @@ transform/pos = Vector2( -2383.67, -485.858 )
 transform/scale = Vector2( 0.643131, 1.36242 )
 input/pickable = false
 shapes/0/shape = SubResource( 7 )
-shapes/0/transform = Matrix32( 145.446, 0, 0, -1.80674, -6.87109, 43.9484 )
+shapes/0/transform = Matrix32( -145.446, 1.27153e-05, -1.5795e-07, -1.80674, -6.87109, 43.9484 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -992,6 +992,8 @@ __meta__ = { "_edit_lock_":true }
 transform/pos = Vector2( -808.958, 298.477 )
 
 [node name="particles" type="Node2D" parent="."]
+
+editor/display_folded = true
 
 [node name="Particles2D" type="Particles2D" parent="particles"]
 
@@ -1091,5 +1093,16 @@ params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
 randomness/spread = 0.659189
 color/color = Color( 0.708712, 0.730469, 0.556412, 1 )
+
+[node name="StreamPlayer" type="StreamPlayer" parent="."]
+
+stream/stream = ExtResource( 14 )
+stream/play = true
+stream/loop = true
+stream/volume_db = 10.9607
+stream/autoplay = false
+stream/paused = false
+stream/loop_restart_time = 7.0
+stream/buffering_ms = 500
 
 

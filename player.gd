@@ -153,6 +153,7 @@ func on_damage(dmg):
 		if(!almost_dead):
 			almost_dead = true
 			get_node("mace_joint").queue_free()
+			get_node("mace").add_to_group("corpse") #just for fun
 	if(health < -20):
 		if(!dead):
 			dead = true

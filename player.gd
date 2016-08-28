@@ -18,6 +18,10 @@ var look_right = false
 
 var health = 100
 
+var almost_dead = false
+var dead = false
+var death_time = 2
+
 var pick_dist = 400
 
 var anim
@@ -36,6 +40,12 @@ func _fixed_process(delta):
 	if(get_linear_velocity().length() > speed_limit):
 		print("Weeeeeeeee!")
 		set_linear_velocity(get_linear_velocity().normalized()*speed_limit)
+	
+	if(dead):
+		death_time -= delta
+		if(death_time < 0):
+			get_tree().change_scene("res://mainmenu.tscn")
+		return
 	
 	#########################################
 	####MOVE AND JUMP########################
@@ -137,7 +147,14 @@ func on_damage(dmg):
 	health -= dmg
 	#print("Ouchd! ", dmg)
 	if(health < 0):
-		print("You are dead")
+		if(!almost_dead):
+			almost_dead = true
+			get_node("mace_joint").queue_free()
+	if(health < -20):
+		if(!dead):
+			dead = true
+			get_node("body/anim").play("death")
+			print("You are dead")
 
 #func _input(event):
 #	if (event.type==InputEvent.MOUSE_BUTTON && event.is_pressed()):

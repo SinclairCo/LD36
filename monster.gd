@@ -25,8 +25,11 @@ var invincible_time = 0.15
 var invincible_timer = 0
 var dead = false
 
+var anim
+
 func _ready():
 	set_fixed_process(true)
+	anim = get_node("anim")
 
 func _fixed_process(delta):
 	if(dmg_timer > 0):
@@ -83,9 +86,13 @@ func _fixed_process(delta):
 				#anim.play("Attack")
 				body.on_damage(attack)
 				attack_cooldown = 1.0/attack_speed
+				anim.play("attack")
 				
 	if(attack_cooldown >= 0):
 		attack_cooldown -= delta
+	
+	if(!anim.is_playing()):
+		anim.play("run")
 		
 func mirror_collision(collider):
 	collider.set_pos(collider.get_pos()*Vector2(-1,1))

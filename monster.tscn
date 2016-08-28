@@ -277,7 +277,7 @@ tracks/15/interp = 1
 tracks/15/imported = false
 tracks/15/keys = { "times":FloatArray( 0, 0.15, 0.3, 0.45 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":0, "values":[ 0.0, 0.0, 0.0, 0.0 ] }
 
-[node name="monster" type="RigidBody2D"]
+[node name="monster" type="RigidBody2D" groups=[ "damageable" ]]
 
 input/pickable = false
 shapes/0/shape = SubResource( 1 )

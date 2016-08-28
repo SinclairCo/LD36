@@ -63,7 +63,7 @@ transform/pos = Vector2( -29.429, -15.4914 )
 transform/rot = -14.8458
 texture = ExtResource( 1 )
 
-[node name="dead_r" type="RigidBody2D" parent="." groups=[ "corpse" ]]
+[node name="dead_r" type="RigidBody2D" parent="." groups=[ "corpse", "corpse_score" ]]
 
 editor/display_folded = true
 transform/pos = Vector2( 42, -16 )

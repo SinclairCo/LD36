@@ -1,20 +1,21 @@
-[gd_scene load_steps=23 format=1]
+[gd_scene load_steps=25 format=1]
 
 [ext_resource path="res://blocktiles/endwall.png" type="Texture" id=1]
 [ext_resource path="res://blocktiles/tile_foundation.png" type="Texture" id=2]
 [ext_resource path="res://player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://sprites/cauldron_f.png" type="Texture" id=4]
 [ext_resource path="res://sprites/cauldron_B.png" type="Texture" id=5]
-[ext_resource path="res://blocktiles/bg_greystone.png" type="Texture" id=6]
-[ext_resource path="res://blocktiles/bg_greystone_2.png" type="Texture" id=7]
-[ext_resource path="res://blocktiles/tree_big.png" type="Texture" id=8]
-[ext_resource path="res://blocktiles/tree_small.png" type="Texture" id=9]
-[ext_resource path="res://blocktiles/platform_1.png" type="Texture" id=10]
-[ext_resource path="res://blocktiles/bg_skygradient.png" type="Texture" id=11]
-[ext_resource path="res://monster.tscn" type="PackedScene" id=12]
-[ext_resource path="res://effects/bubble.png" type="Texture" id=13]
-[ext_resource path="res://sound/music.ogg" type="AudioStream" id=14]
-[ext_resource path="res://spawn.gd" type="Script" id=15]
+[ext_resource path="res://cauldron.gd" type="Script" id=6]
+[ext_resource path="res://blocktiles/bg_greystone.png" type="Texture" id=7]
+[ext_resource path="res://blocktiles/bg_greystone_2.png" type="Texture" id=8]
+[ext_resource path="res://blocktiles/tree_big.png" type="Texture" id=9]
+[ext_resource path="res://blocktiles/tree_small.png" type="Texture" id=10]
+[ext_resource path="res://blocktiles/platform_1.png" type="Texture" id=11]
+[ext_resource path="res://blocktiles/bg_skygradient.png" type="Texture" id=12]
+[ext_resource path="res://monster.tscn" type="PackedScene" id=13]
+[ext_resource path="res://effects/bubble.png" type="Texture" id=14]
+[ext_resource path="res://sound/music.ogg" type="AudioStream" id=15]
+[ext_resource path="res://spawn.gd" type="Script" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -45,6 +46,11 @@ extents = Vector2( 235.315, 9.99 )
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
+
+[sub_resource type="RectangleShape2D" id=8]
+
+custom_solver_bias = 0.0
+extents = Vector2( 303.901, 183.592 )
 
 [sub_resource type="RectangleShape2D" id=7]
 
@@ -443,7 +449,6 @@ z/relative = false
 
 [node name="StaticBodyCauldron" type="StaticBody2D" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 579.25, 62.016 )
 input/pickable = false
 shapes/0/shape = SubResource( 5 )
@@ -455,6 +460,7 @@ constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
+__meta__ = { "_edit_lock_":true }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodyCauldron"]
 
@@ -482,6 +488,7 @@ __meta__ = { "_edit_lock_":true }
 
 [node name="backwall" type="StaticBody2D" parent="StaticBodyCauldron"]
 
+editor/display_folded = true
 transform/pos = Vector2( -579.25, -62.016 )
 input/pickable = false
 shapes/0/shape = SubResource( 6 )
@@ -499,6 +506,27 @@ bounce = 0.0
 transform/pos = Vector2( 1206.16, -1062.48 )
 transform/scale = Vector2( 5.83656, 128.514 )
 shape = SubResource( 6 )
+trigger = false
+_update_shape_index = 0
+
+[node name="cauldron" type="Area2D" parent="StaticBodyCauldron"]
+
+transform/pos = Vector2( 223.555, 268.508 )
+z/z = 2000
+input/pickable = true
+shapes/0/shape = SubResource( 8 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 6 )
+need_to_collect = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodyCauldron/cauldron"]
+
+shape = SubResource( 8 )
 trigger = false
 _update_shape_index = 0
 
@@ -520,7 +548,7 @@ transform/scale = Vector2( -9.0975, 9.13824 )
 transform/pos = Vector2( 34.55, -23.7198 )
 transform/scale = Vector2( 0.299541, 0.256361 )
 z/z = -12
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 modulate = Color( 0.980469, 0.938399, 0.83876, 1 )
 __meta__ = { "_edit_lock_":true }
 
@@ -529,7 +557,7 @@ __meta__ = { "_edit_lock_":true }
 transform/pos = Vector2( 13.6738, 11.4388 )
 transform/scale = Vector2( 0.0648741, 0.0884552 )
 z/z = -7
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 modulate = Color( 0.074234, 0.0971775, 0.136719, 1 )
 __meta__ = { "_edit_lock_":true }
 
@@ -538,7 +566,7 @@ __meta__ = { "_edit_lock_":true }
 transform/pos = Vector2( -25.688, 8.30218 )
 transform/scale = Vector2( 0.112784, 0.105097 )
 z/z = -1
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 __meta__ = { "_edit_lock_":true }
 
 [node name="Sprite5" type="Sprite" parent="BG_decor/spawncave"]
@@ -547,7 +575,7 @@ transform/pos = Vector2( -3.85559, -9.29605 )
 transform/rot = -45.8944
 transform/scale = Vector2( 0.0835304, 0.0899231 )
 z/z = -2
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 modulate = Color( 0.667374, 0.685917, 0.714844, 1 )
 __meta__ = { "_edit_lock_":true }
 
@@ -556,7 +584,7 @@ __meta__ = { "_edit_lock_":true }
 transform/pos = Vector2( -6.10767, 18.4264 )
 transform/scale = Vector2( 0.0654806, 0.0667993 )
 z/z = -4
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 modulate = Color( 0.488846, 0.563223, 0.691406, 1 )
 __meta__ = { "_edit_lock_":true }
 
@@ -566,7 +594,7 @@ transform/pos = Vector2( 21.0604, -8.08664 )
 transform/rot = 49.9019
 transform/scale = Vector2( 0.0586492, 0.0835497 )
 z/z = -1
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 modulate = Color( 0.696228, 0.700776, 0.730469, 1 )
 __meta__ = { "_edit_lock_":true }
 
@@ -574,7 +602,7 @@ __meta__ = { "_edit_lock_":true }
 
 transform/pos = Vector2( 47.8508, -33.2119 )
 transform/scale = Vector2( 0.0661468, 0.0646472 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 __meta__ = { "_edit_lock_":true }
 
 [node name="leftend" type="Sprite" parent="BG_decor/spawncave"]
@@ -582,7 +610,7 @@ __meta__ = { "_edit_lock_":true }
 transform/pos = Vector2( 46.0854, -10.268 )
 transform/scale = Vector2( 0.100158, 0.0829142 )
 z/z = 2
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 __meta__ = { "_edit_lock_":true }
 
 [node name="Sprite" type="Sprite" parent="BG_decor"]
@@ -590,7 +618,7 @@ __meta__ = { "_edit_lock_":true }
 transform/pos = Vector2( -431.903, 395.2 )
 transform/scale = Vector2( 0.60693, 0.6 )
 z/z = 1
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 modulate = Color( 0.964844, 0.820624, 0.667099, 1 )
 
 [node name="Sprite13" type="Sprite" parent="BG_decor"]
@@ -598,21 +626,21 @@ modulate = Color( 0.964844, 0.820624, 0.667099, 1 )
 transform/pos = Vector2( 423.82, 539.139 )
 transform/scale = Vector2( 0.955487, 0.839957 )
 z/z = 1
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 modulate = Color( 0.816406, 0.816406, 0.816406, 1 )
 
 [node name="Sprite1" type="Sprite" parent="BG_decor"]
 
 transform/pos = Vector2( -627.132, 384 )
 transform/scale = Vector2( 0.91602, 0.824096 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 modulate = Color( 0.757813, 0.818359, 1, 1 )
 
 [node name="Sprite5" type="Sprite" parent="BG_decor"]
 
 transform/pos = Vector2( -341.183, -10.2824 )
 transform/scale = Vector2( 0.727942, 0.824096 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 modulate = Color( 1, 0.856659, 0.761719, 1 )
 
 [node name="Sprite3" type="Sprite" parent="BG_decor"]
@@ -620,7 +648,7 @@ modulate = Color( 1, 0.856659, 0.761719, 1 )
 transform/pos = Vector2( -676.964, 43.7793 )
 transform/rot = 40.3286
 transform/scale = Vector2( 1.2787, 1.32171 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 modulate = Color( 0.757813, 0.818359, 1, 1 )
 
 [node name="Sprite10" type="Sprite" parent="BG_decor"]
@@ -628,35 +656,35 @@ modulate = Color( 0.757813, 0.818359, 1, 1 )
 transform/pos = Vector2( -909.892, -104.248 )
 transform/rot = -88.4977
 transform/scale = Vector2( 1.52217, 1.85934 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="Sprite4" type="Sprite" parent="BG_decor"]
 
 transform/pos = Vector2( -558.689, -159.311 )
 transform/rot = 121.436
 transform/scale = Vector2( -1.7641, 1.25365 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="Sprite11" type="Sprite" parent="BG_decor"]
 
 transform/pos = Vector2( -1302.6, -137.045 )
 transform/rot = 121.436
 transform/scale = Vector2( -0.92114, 0.790049 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="Sprite12" type="Sprite" parent="BG_decor"]
 
 transform/pos = Vector2( -764.798, -197.172 )
 transform/rot = 84.4325
 transform/scale = Vector2( -0.92114, 0.790049 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="Sprite6" type="Sprite" parent="BG_decor"]
 
 transform/pos = Vector2( -1211.8, 410.743 )
 transform/rot = -24.9148
 transform/scale = Vector2( -1.45906, 1.25365 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 modulate = Color( 0.816406, 0.774948, 0.774948, 1 )
 
 [node name="Sprite16" type="Sprite" parent="BG_decor"]
@@ -665,7 +693,7 @@ transform/pos = Vector2( -378.321, -344.37 )
 transform/rot = -179.884
 transform/scale = Vector2( -1.7779, 1.54332 )
 z/z = -1
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 modulate = Color( 1, 0.97168, 0.886719, 1 )
 
 [node name="Sprite8" type="Sprite" parent="BG_decor"]
@@ -673,47 +701,47 @@ modulate = Color( 1, 0.97168, 0.886719, 1 )
 transform/pos = Vector2( -1493.77, 67.4993 )
 transform/rot = -10.2917
 transform/scale = Vector2( 1.93915, 1.87993 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="Sprite7" type="Sprite" parent="BG_decor"]
 
 transform/pos = Vector2( -1541.21, 540.486 )
 transform/rot = -137.621
 transform/scale = Vector2( -1.45906, 1.25365 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="Sprite9" type="Sprite" parent="BG_decor"]
 
 transform/pos = Vector2( -1917.7, 524.144 )
 transform/rot = -134.372
 transform/scale = Vector2( 1.898, 2.27646 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 modulate = Color( 1, 0.925781, 0.925781, 1 )
 
 [node name="tree_big" type="Sprite" parent="BG_decor"]
 
 transform/pos = Vector2( -3805.49, 4.23756 )
 transform/scale = Vector2( 1.77124, 1.82478 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="tree_small2" type="Sprite" parent="BG_decor"]
 
 transform/pos = Vector2( -189.181, -675.752 )
 transform/scale = Vector2( 1.77124, 1.82478 )
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 
 [node name="tree_small3" type="Sprite" parent="BG_decor"]
 
 transform/pos = Vector2( -3168.08, 87.755 )
 transform/scale = Vector2( -6.13831, 5.1434 )
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 
 [node name="tree_big1" type="Sprite" parent="BG_decor"]
 
 transform/pos = Vector2( -5753.33, -1103.84 )
 transform/rot = -20.8937
 transform/scale = Vector2( -1.14409, 1.28214 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 modulate = Color( 0.928406, 1, 0.730469, 1 )
 
 [node name="Sprite2" type="Sprite" parent="BG_decor"]
@@ -721,7 +749,7 @@ modulate = Color( 0.928406, 1, 0.730469, 1 )
 transform/pos = Vector2( -527.585, 174.648 )
 transform/scale = Vector2( 0.771363, 0.703615 )
 z/z = -1
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 modulate = Color( 0.816406, 0.816406, 0.816406, 1 )
 
 [node name="platforms" type="Node2D" parent="."]
@@ -759,7 +787,7 @@ _update_shape_index = 0
 
 transform/pos = Vector2( -1.1969, 43.8322 )
 transform/scale = Vector2( 2.44837, 0.996861 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 __meta__ = { "_edit_lock_":true }
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="platforms"]
@@ -793,7 +821,7 @@ __meta__ = { "_edit_lock_":true }
 
 transform/pos = Vector2( -1.1969, 43.8322 )
 transform/scale = Vector2( 2.44837, 0.996861 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 __meta__ = { "_edit_lock_":true }
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="platforms"]
@@ -827,7 +855,7 @@ __meta__ = { "_edit_lock_":true }
 
 transform/pos = Vector2( -1.1969, 43.8322 )
 transform/scale = Vector2( 2.44837, 0.996861 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 __meta__ = { "_edit_lock_":true }
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="platforms"]
@@ -861,7 +889,7 @@ __meta__ = { "_edit_lock_":true }
 
 transform/pos = Vector2( -1.1969, 43.8322 )
 transform/scale = Vector2( 2.44837, 0.996861 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 __meta__ = { "_edit_lock_":true }
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="platforms"]
@@ -895,7 +923,7 @@ __meta__ = { "_edit_lock_":true }
 
 transform/pos = Vector2( -1.1969, 43.8322 )
 transform/scale = Vector2( 2.44837, 0.996861 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 __meta__ = { "_edit_lock_":true }
 
 [node name="StaticBody2D7" type="StaticBody2D" parent="platforms"]
@@ -930,7 +958,7 @@ __meta__ = { "_edit_lock_":true }
 
 transform/pos = Vector2( -1.1969, 43.8322 )
 transform/scale = Vector2( 2.44837, 0.996861 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 __meta__ = { "_edit_lock_":true }
 
 [node name="StaticBody2D1" type="StaticBody2D" parent="platforms"]
@@ -964,7 +992,7 @@ __meta__ = { "_edit_lock_":true }
 
 transform/pos = Vector2( -1.1969, 43.8322 )
 transform/scale = Vector2( 2.44837, 0.996861 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 __meta__ = { "_edit_lock_":true }
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -985,23 +1013,21 @@ scroll/ignore_camera_zoom = true
 
 transform/pos = Vector2( 229.9, -0.999994 )
 transform/scale = Vector2( 10, 1.3 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 __meta__ = { "_edit_lock_":true }
 
-[node name="monster" parent="." instance=ExtResource( 12 )]
+[node name="monster" parent="." instance=ExtResource( 13 )]
 
 transform/pos = Vector2( -808.958, 298.477 )
 
 [node name="particles" type="Node2D" parent="."]
-
-editor/display_folded = true
 
 [node name="Particles2D" type="Particles2D" parent="particles"]
 
 transform/pos = Vector2( 609.012, 84.0724 )
 config/amount = 3
 config/lifetime = 2.0
-config/texture = ExtResource( 13 )
+config/texture = ExtResource( 14 )
 params/direction = 168.479
 params/spread = 41.6382
 params/linear_velocity = 90.0
@@ -1020,13 +1046,14 @@ params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
 randomness/spread = 1.0
 color/color = Color( 0.847509, 0.984375, 0.7229, 1 )
+__meta__ = { "_edit_lock_":true }
 
 [node name="Particles2D1" type="Particles2D" parent="particles"]
 
 transform/pos = Vector2( 896.089, 90.224 )
 config/amount = 4
 config/lifetime = 2.0
-config/texture = ExtResource( 13 )
+config/texture = ExtResource( 14 )
 params/direction = 168.479
 params/spread = 41.6382
 params/linear_velocity = 159.813
@@ -1045,13 +1072,14 @@ params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
 randomness/spread = 1.0
 color/color = Color( 0.90625, 0.799938, 0.686768, 1 )
+__meta__ = { "_edit_lock_":true }
 
 [node name="Particles2D2" type="Particles2D" parent="particles"]
 
 transform/pos = Vector2( 754.601, 90.2242 )
 config/amount = 4
 config/lifetime = 2.0
-config/texture = ExtResource( 13 )
+config/texture = ExtResource( 14 )
 params/direction = 168.479
 params/spread = 60.5804
 params/linear_velocity = 248.185
@@ -1069,13 +1097,14 @@ params/hue_variation = 0.450298
 params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
 randomness/spread = 1.0
+__meta__ = { "_edit_lock_":true }
 
 [node name="Particles2D3" type="Particles2D" parent="particles"]
 
 transform/pos = Vector2( 715.641, 63.567 )
 config/amount = 4
 config/lifetime = 2.0
-config/texture = ExtResource( 13 )
+config/texture = ExtResource( 14 )
 params/direction = 168.479
 params/spread = 60.5804
 params/linear_velocity = 128.062
@@ -1094,10 +1123,11 @@ params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
 randomness/spread = 0.659189
 color/color = Color( 0.708712, 0.730469, 0.556412, 1 )
+__meta__ = { "_edit_lock_":true }
 
 [node name="StreamPlayer" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 14 )
+stream/stream = ExtResource( 15 )
 stream/play = true
 stream/loop = true
 stream/volume_db = 10.9607
@@ -1108,8 +1138,9 @@ stream/buffering_ms = 500
 
 [node name="spawn" type="Position2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( -5448.43, 184.038 )
-script/script = ExtResource( 15 )
+script/script = ExtResource( 16 )
 
 [node name="timer" type="Timer" parent="spawn"]
 

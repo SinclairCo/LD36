@@ -100,7 +100,7 @@ func mirror_collision(collider):
 		
 func on_damage(dmg):
 	
-	if(invincible_timer > 0):
+	if(dmg > 5 && invincible_timer > 0):
 		return
 	invincible_timer = invincible_time
 	
@@ -110,7 +110,7 @@ func on_damage(dmg):
 	#	old_text = get_node("dmg").get_text()
 	get_node("dmg").set_text(str(int(dmg)))
 	dmg_timer = 1
-	print("uffff ", dmg)
+	#print("uffff ", dmg)
 	if(health < 0 && !dead):
 		dead = true
 		var corpse = dead_body.instance()

@@ -129,7 +129,7 @@ func _fixed_process(delta):
 
 func on_damage(dmg):
 	health -= dmg
-	print("Ouchd! ", dmg)
+	#print("Ouchd! ", dmg)
 	if(health < 0):
 		print("You are dead")
 

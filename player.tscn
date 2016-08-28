@@ -508,7 +508,7 @@ transform/pos = Vector2( 0, 163 )
 
 [node name="max_arm_length" type="Position2D" parent="."]
 
-transform/pos = Vector2( -124.974, -35.002 )
+transform/pos = Vector2( -124.974, -45.002 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
@@ -638,19 +638,18 @@ texture = ExtResource( 10 )
 
 [node name="arms" type="Node2D" parent="body"]
 
-editor/display_folded = true
 transform/pos = Vector2( 43, -41 )
 z/z = 2
 
 [node name="shoulder" type="Sprite" parent="body/arms"]
 
-transform/pos = Vector2( -0.50634, 0.908974 )
+transform/pos = Vector2( 12.1443, -14.0432 )
 texture = ExtResource( 2 )
-offset = Vector2( -26.6881, -1.25649 )
+offset = Vector2( -39.3388, 13.6957 )
 
 [node name="hand_arm" type="Sprite" parent="body/arms/shoulder"]
 
-transform/pos = Vector2( -56.9195, 10.6099 )
+transform/pos = Vector2( -69.5702, 25.5621 )
 texture = ExtResource( 11 )
 offset = Vector2( -55.985, 0.106422 )
 

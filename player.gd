@@ -16,12 +16,17 @@ var look_right = false
 
 var health = 100
 
+var pick_dist = 400
+
 var anim
+
+var dragging_thing = null
 
 func _ready():
 	set_fixed_process(true)
-	max_arm_length = (get_node("max_arm_length").get_global_pos() - get_node("body/arms").get_global_pos()).length()
+	max_arm_length = (get_node("max_arm_length").get_global_pos() - get_node("body/arms/shoulder").get_global_pos()).length()
 	anim = get_node("body/anim")
+	#set_process_input(true)
 	pass
 	
 func _fixed_process(delta):
@@ -77,15 +82,16 @@ func _fixed_process(delta):
 	var global_aim_pos = transform.affine_inverse() * get_viewport().get_mouse_pos()
 	
 	#limit mace position with some distance around shoulder
-	var arms_base_pos = get_node("body/arms").get_global_pos()
+	var arms_base_pos = get_node("body/arms/shoulder").get_global_pos()
 	var direction_from_shoulder = global_aim_pos - arms_base_pos
+	var trimmed_global_aim_pos = global_aim_pos
 	if(direction_from_shoulder.length() > max_arm_length):
 		direction_from_shoulder = direction_from_shoulder.normalized()*max_arm_length
-		global_aim_pos = arms_base_pos + direction_from_shoulder
+		trimmed_global_aim_pos = arms_base_pos + direction_from_shoulder
 	
 	var mace_base = get_node("mace_joint_base")
 	#change position with velocity to have accurate joint simulation
-	mace_base.set_linear_velocity((global_aim_pos - mace_base.get_global_pos())/delta)
+	mace_base.set_linear_velocity((trimmed_global_aim_pos - mace_base.get_global_pos())/delta)
 	
 	#rotate arms... manually
 	var sin_a = direction_from_shoulder.length()/2/(max_arm_length/2)
@@ -95,13 +101,28 @@ func _fixed_process(delta):
 	var shoulder_angle = PI/2 - asin_a
 	
 	#print(shoulder_angle, " " , direction_from_shoulder.length()/2, " " , max_arm_length/2, " ", direction_from_shoulder.length()/2/(max_arm_length/2))
+	var arm_direction
 	if(look_right):
-		get_node("body/arms").set_rot(-direction_from_shoulder.angle() + PI/2);
+		arm_direction = -direction_from_shoulder.angle() + PI/2;
 	else:
-		get_node("body/arms").set_rot(direction_from_shoulder.angle() + PI/2);
-	get_node("body/arms/shoulder").set_rot(shoulder_angle)
+		arm_direction = direction_from_shoulder.angle() + PI/2;
+	get_node("body/arms/shoulder").set_rot(arm_direction+shoulder_angle)
 	get_node("body/arms/shoulder/hand_arm").set_rot(PI + (PI/2 - shoulder_angle)*2)
-			
+
+	if(Input.is_action_pressed("pick")):
+		if(dragging_thing == null && (global_aim_pos - arms_base_pos).length() < pick_dist):
+			print("pick")
+			var pick_res_arr = get_world_2d().get_direct_space_state().intersect_point(global_aim_pos)
+			for picked_res in pick_res_arr :
+				if(picked_res.collider.get_groups().has("corpse")):
+					print("CORPSE!")
+					dragging_thing = picked_res.collider
+	else:
+		dragging_thing = null
+					
+	if(dragging_thing!=null):
+		dragging_thing.set_linear_velocity((trimmed_global_aim_pos - dragging_thing.get_global_pos())/delta)
+
 	pass
 
 func on_damage(dmg):
@@ -110,3 +131,7 @@ func on_damage(dmg):
 	if(health < 0):
 		print("You are dead")
 
+#func _input(event):
+#	if (event.type==InputEvent.MOUSE_BUTTON && event.is_pressed()):
+#		get_world_2d().get_direct_space_state().intersect_point()
+#		print(event)

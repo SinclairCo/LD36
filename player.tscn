@@ -504,7 +504,7 @@ drag_margin/bottom = 0.2
 
 [node name="bottom" type="Position2D" parent="."]
 
-transform/pos = Vector2( 0, 154 )
+transform/pos = Vector2( 0, 163 )
 
 [node name="max_arm_length" type="Position2D" parent="."]
 

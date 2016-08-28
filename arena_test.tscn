@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://blocktiles/tile_foundation.png" type="Texture" id=1]
 [ext_resource path="res://player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://sprites/cauldron.png" type="Texture" id=3]
-[ext_resource path="res://monster.tscn" type="PackedScene" id=4]
+[ext_resource path="res://spawn.tscn" type="PackedScene" id=4]
+[ext_resource path="res://monster.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -130,7 +131,11 @@ _update_shape_index = 0
 transform/pos = Vector2( 195, 190 )
 texture = ExtResource( 3 )
 
-[node name="monster" parent="." instance=ExtResource( 4 )]
+[node name="spawn" parent="StaticBodyCauldron/Sprite" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( -1776.76, -188.582 )
+
+[node name="monster" parent="." instance=ExtResource( 5 )]
 
 transform/pos = Vector2( -495.206, 277.593 )
 

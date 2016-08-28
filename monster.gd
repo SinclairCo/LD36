@@ -8,6 +8,7 @@ var random_target_pos = Vector2(0,0)
 
 const player_class = preload("res://player.gd") # Check if we collide with player
 var dead_body = preload("res://dead_monster.tscn") 
+var blood = preload("res://effect_bloodhit.tscn") 
 
 var health = 100
 var speed = 800
@@ -93,6 +94,9 @@ func _fixed_process(delta):
 				body.on_damage(attack)
 				attack_cooldown = 1.0/attack_speed
 				anim.play("attack")
+				var new_blood = blood.instance()
+				new_blood.set_global_pos(get_node("body/blood_bite").get_global_pos())
+				get_tree().get_current_scene().add_child(new_blood)
 				
 	if(attack_cooldown >= 0):
 		attack_cooldown -= delta

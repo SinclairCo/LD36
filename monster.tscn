@@ -370,6 +370,10 @@ transform/rot = 1.5165
 texture = ExtResource( 6 )
 offset = Vector2( 24.7424, 4.65289 )
 
+[node name="blood_bite" type="Position2D" parent="body"]
+
+transform/pos = Vector2( 126.712, -26.6134 )
+
 [node name="dmg" type="Label" parent="."]
 
 rect/scale = Vector2( 3, 3 )

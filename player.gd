@@ -41,6 +41,8 @@ func _fixed_process(delta):
 		print("Weeeeeeeee!")
 		set_linear_velocity(get_linear_velocity().normalized()*speed_limit)
 	
+	get_node("ui/health").set_value(health)
+	
 	if(dead):
 		death_time -= delta
 		if(death_time < 0):
@@ -53,8 +55,6 @@ func _fixed_process(delta):
 	var left = Input.is_action_pressed("left")
 	var right = Input.is_action_pressed("right")
 	var direction = Vector2((right - left), 0).normalized()
-	
-	get_node("ui/health").set_value(health)
 	
 	var is_moving = direction.x != 0
 	if(is_moving):
@@ -129,7 +129,7 @@ func _fixed_process(delta):
 
 	if(Input.is_action_pressed("pick")):
 		if( (dragging_thing == null || !dragging_thing.get_ref() ) && (global_aim_pos - arms_base_pos).length() < pick_dist):
-			print("pick")
+			#print("pick")
 			var pick_res_arr = get_world_2d().get_direct_space_state().intersect_point(global_aim_pos)
 			for picked_res in pick_res_arr :
 				if(picked_res.collider.get_groups().has("corpse")):

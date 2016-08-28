@@ -4,6 +4,8 @@ extends RigidBody2D
 var contact_pos = null
 var dmg_factor
 
+var blood = preload("res://effect_bloodhit.tscn") 
+
 func _ready():
 	#set_fixed_process(true)
 	pass
@@ -25,6 +27,9 @@ func _integrate_forces(state):
 			var dmg = dmg_factor.length()/100
 			if(dmg > 10):
 				body.on_damage(dmg)
+				var new_blood = blood.instance()
+				new_blood.set_global_pos(contact_pos)
+				get_tree().get_current_scene().add_child(new_blood)
 	
 #func _draw():
 #	if(contact_pos != null):

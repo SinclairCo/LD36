@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=1]
+[gd_scene load_steps=23 format=1]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/player_shoulder.png" type="Texture" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://sprites/player_arm.png" type="Texture" id=11]
 [ext_resource path="res://weapon.gd" type="Script" id=12]
 [ext_resource path="res://sprites/male_bat.png" type="Texture" id=13]
+[ext_resource path="res://blocktiles/healthbar_background.png" type="Texture" id=14]
+[ext_resource path="res://blocktiles/healthbar_bar.png" type="Texture" id=15]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -527,6 +529,8 @@ softness = 0.0
 
 [node name="body" type="Node2D" parent="."]
 
+editor/display_folded = true
+
 [node name="anim" type="AnimationPlayer" parent="body"]
 
 playback/process_mode = 1
@@ -687,6 +691,7 @@ _update_shape_index = 0
 
 [node name="mace" type="RigidBody2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( -170.895, -79.8697 )
 input/pickable = false
 shapes/0/shape = SubResource( 6 )
@@ -733,5 +738,36 @@ transform/pos = Vector2( 0, 106 )
 shape = SubResource( 7 )
 trigger = false
 _update_shape_index = 1
+
+[node name="ui" type="CanvasLayer" parent="."]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="health" type="TextureProgress" parent="ui"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 12.0
+margin/top = 526.0
+margin/right = 448.0
+margin/bottom = 590.0
+range/min = 0.0
+range/max = 100.0
+range/step = 1.0
+range/page = 0.0
+range/value = 100.0
+range/exp_edit = false
+range/rounded = false
+texture/under = ExtResource( 14 )
+texture/over = null
+texture/progress = ExtResource( 15 )
+radial_fill/initial_angle = 1.0
+radial_fill/fill_degrees = 360.0
+radial_fill/center_offset = Vector2( 0, 0 )
 
 

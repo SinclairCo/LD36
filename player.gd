@@ -38,6 +38,8 @@ func _fixed_process(delta):
 	var right = Input.is_action_pressed("right")
 	var direction = Vector2((right - left), 0).normalized()
 	
+	get_node("ui/health").set_value(health)
+	
 	var is_moving = direction.x != 0
 	if(is_moving):
 		look_right = direction.x > 0

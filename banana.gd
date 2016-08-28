@@ -14,13 +14,16 @@ func _ready():
 	pass
 
 func do_pickable(picker):
-	if( !picked && picker.health < 100): 
-		picker.health += 50
-		if(picker.health > 100): 
-			picker.health = 100
-		timer.start()
-		picked = true
-		anim.play("hide")
+	if( !picked): 
+		if(picker.health < 100):
+			picker.health += 50
+			if(picker.health > 100): 
+				picker.health = 100
+			timer.start()
+			picked = true
+			anim.play("hide")
+		else:
+			anim.play("shake")
 
 
 func _on_timer_timeout():

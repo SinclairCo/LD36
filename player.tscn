@@ -460,7 +460,7 @@ height = 90.8517
 [sub_resource type="RectangleShape2D" id=7]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 50.583 )
+extents = Vector2( 10, 24.8099 )
 
 [node name="player" type="RigidBody2D" groups=[ "damageable" ]]
 
@@ -694,14 +694,13 @@ _update_shape_index = 0
 
 [node name="mace" type="RigidBody2D" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( -170.895, -79.8697 )
 input/pickable = false
 shapes/0/shape = SubResource( 6 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, -0.209732, -14.8512 )
 shapes/0/trigger = false
 shapes/1/shape = SubResource( 7 )
-shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 106 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, -0.44014, 85.314 )
 shapes/1/trigger = false
 collision/layers = 1024
 collision/mask = 1
@@ -731,13 +730,15 @@ texture = ExtResource( 13 )
 [node name="dmg_shape" type="CollisionShape2D" parent="mace"]
 
 transform/pos = Vector2( -0.209732, -14.8512 )
+z/z = 5
 shape = SubResource( 6 )
 trigger = false
 _update_shape_index = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mace"]
 
-transform/pos = Vector2( 0, 106 )
+transform/pos = Vector2( -0.44014, 85.314 )
+z/z = 5
 shape = SubResource( 7 )
 trigger = false
 _update_shape_index = 1
@@ -796,6 +797,7 @@ texture/under = ExtResource( 16 )
 texture/over = ExtResource( 17 )
 texture/progress = ExtResource( 18 )
 mode = 3
+radial_fill/initial_angle = 1.0
 radial_fill/fill_degrees = 360.0
 radial_fill/center_offset = Vector2( 0, 0 )
 

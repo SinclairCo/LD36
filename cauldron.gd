@@ -21,6 +21,7 @@ func _fixed_process(delta):
 				get_tree().get_current_scene().get_node("player/ui/food").set_value(progress)
 				if(progress >= 100):
 					print("You won!")
+					get_tree().change_scene("res://youwin.tscn")
 		elif(body.has_method("on_damage")):
 			body.on_damage(1)
 			#print("whoops!")

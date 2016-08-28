@@ -3,7 +3,9 @@ extends RigidBody2D
 
 var run_speed = 700
 var acceleration = 5000;
-var jump_imp = 2300;
+var jump_imp = 2750;
+
+var speed_limit = 1500
 
 var next_jump_delay = 0.080;
 var current_jump_delay = 0;
@@ -30,6 +32,10 @@ func _ready():
 	pass
 	
 func _fixed_process(delta):
+	
+	if(get_linear_velocity().length() > speed_limit):
+		print("Weeeeeeeee!")
+		set_linear_velocity(get_linear_velocity().normalized()*speed_limit)
 	
 	#########################################
 	####MOVE AND JUMP########################
@@ -112,18 +118,18 @@ func _fixed_process(delta):
 	get_node("body/arms/shoulder/hand_arm").set_rot(PI + (PI/2 - shoulder_angle)*2)
 
 	if(Input.is_action_pressed("pick")):
-		if(dragging_thing == null && (global_aim_pos - arms_base_pos).length() < pick_dist):
+		if( (dragging_thing == null || !dragging_thing.get_ref() ) && (global_aim_pos - arms_base_pos).length() < pick_dist):
 			print("pick")
 			var pick_res_arr = get_world_2d().get_direct_space_state().intersect_point(global_aim_pos)
 			for picked_res in pick_res_arr :
 				if(picked_res.collider.get_groups().has("corpse")):
 					print("CORPSE!")
-					dragging_thing = picked_res.collider
+					dragging_thing = weakref(picked_res.collider)
 	else:
 		dragging_thing = null
 					
-	if(dragging_thing!=null):
-		dragging_thing.set_linear_velocity((trimmed_global_aim_pos - dragging_thing.get_global_pos())/delta)
+	if(dragging_thing != null && dragging_thing.get_ref()):
+		dragging_thing.get_ref().set_linear_velocity((trimmed_global_aim_pos - dragging_thing.get_ref().get_global_pos())/delta)
 
 	pass
 

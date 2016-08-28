@@ -25,6 +25,8 @@ var invincible_time = 0.15
 var invincible_timer = 0
 var dead = false
 
+var speed_limit = 1500
+
 var anim
 
 func _ready():
@@ -32,6 +34,10 @@ func _ready():
 	anim = get_node("anim")
 
 func _fixed_process(delta):
+	if(get_linear_velocity().length() > speed_limit):
+		print("Woooaaaaaaaa!")
+		set_linear_velocity(get_linear_velocity().normalized()*speed_limit)
+	
 	if(dmg_timer > 0):
 		dmg_timer-=delta
 		if(dmg_timer <= 0):

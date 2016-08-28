@@ -5,6 +5,7 @@
 
 [node name="Node2D" type="Particles2D"]
 
+transform/scale = Vector2( 2.19403, 2.26939 )
 config/amount = 12
 config/lifetime = 2.71096
 config/time_scale = 2.02265
@@ -12,8 +13,8 @@ config/explosiveness = 0.231872
 config/texture = ExtResource( 1 )
 params/direction = 0.0
 params/spread = 180.0
-params/linear_velocity = 22.0
-params/spin_velocity = 0.0
+params/linear_velocity = 70.0
+params/spin_velocity = 10.19
 params/orbit_velocity = 0.0
 params/gravity_direction = 0.0
 params/gravity_strength = 40.0
@@ -27,6 +28,7 @@ params/hue_variation = 0.0
 params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
 randomness/linear_velocity = 0.443507
+randomness/spin_velocity = 0.467929
 randomness/initial_angle = 0.956918
 script/script = ExtResource( 2 )
 

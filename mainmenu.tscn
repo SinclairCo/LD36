@@ -121,17 +121,20 @@ texture = ExtResource( 13 )
 
 transform/pos = Vector2( 402.131, 308.944 )
 texture = ExtResource( 14 )
+modulate = Color( 0.820313, 0.726686, 0.644073, 1 )
 
 [node name="Tut_smash1" type="Sprite" parent="."]
 
 transform/pos = Vector2( 1081.48, 322.576 )
 texture = ExtResource( 15 )
+modulate = Color( 0.949219, 0.839894, 0.760117, 1 )
 
 [node name="Tut_smash2" type="Sprite" parent="."]
 
 transform/pos = Vector2( 1696.06, 241.079 )
 transform/scale = Vector2( -0.778051, 0.828999 )
 texture = ExtResource( 16 )
+modulate = Color( 0.960938, 0.788269, 0.788269, 1 )
 
 [node name="ParallaxBackground 2" type="ParallaxBackground" parent="."]
 

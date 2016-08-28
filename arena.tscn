@@ -861,12 +861,11 @@ z/relative = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="platforms"]
 
-editor/display_folded = true
-transform/pos = Vector2( -1516.21, -297.584 )
+transform/pos = Vector2( -1516.21, -279.961 )
 transform/scale = Vector2( 0.445756, 1.36242 )
 input/pickable = false
 shapes/0/shape = SubResource( 6 )
-shapes/0/transform = Matrix32( -145.446, 1.27153e-05, -1.18353e-07, -1.3538, -3.12431, 18.9231 )
+shapes/0/transform = Matrix32( -145.446, 1.27153e-05, -3.39422e-07, -3.88253, -3.12431, 25.0399 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -878,12 +877,13 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/StaticBody2D"]
 
-transform/pos = Vector2( -3.12431, 18.9231 )
+transform/pos = Vector2( -3.12431, 25.0399 )
 transform/rot = 180.0
-transform/scale = Vector2( 145.446, 1.3538 )
+transform/scale = Vector2( 145.446, 3.88253 )
 shape = SubResource( 6 )
 trigger = false
 _update_shape_index = 0
+__meta__ = { "_edit_lock_":true }
 
 [node name="Sprite" type="Sprite" parent="platforms/StaticBody2D"]
 

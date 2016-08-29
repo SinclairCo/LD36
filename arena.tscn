@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=1]
+[gd_scene load_steps=34 format=1]
 
 [ext_resource path="res://sprites/spikes.png" type="Texture" id=1]
 [ext_resource path="res://banana.tscn" type="PackedScene" id=2]
@@ -19,7 +19,9 @@
 [ext_resource path="res://sprites/cauldron_f.png" type="Texture" id=17]
 [ext_resource path="res://sprites/cauldron_B.png" type="Texture" id=18]
 [ext_resource path="res://cauldron.gd" type="Script" id=19]
-[ext_resource path="res://spikes.gd" type="Script" id=20]
+[ext_resource path="res://sound/boiling.wav" type="Sample" id=20]
+[ext_resource path="res://sound/into_the_cauldron.wav" type="Sample" id=21]
+[ext_resource path="res://spikes.gd" type="Script" id=22]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -64,9 +66,14 @@ extents = Vector2( 10, 8.06049 )
 [sub_resource type="RectangleShape2D" id=9]
 
 custom_solver_bias = 0.0
-extents = Vector2( 303.901, 183.592 )
+extents = Vector2( 271.908, 183.592 )
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="SampleLibrary" id=10]
+
+samples/boiling = { "db":0.0, "pitch":1.0, "sample":ExtResource( 20 ) }
+samples/into_the_cauldron = { "db":-6.0, "pitch":1.0, "sample":ExtResource( 21 ) }
+
+[sub_resource type="RectangleShape2D" id=11]
 
 custom_solver_bias = 0.0
 extents = Vector2( 14.716, 12.1934 )
@@ -1425,7 +1432,7 @@ _update_shape_index = 2
 
 [node name="cauldron" type="Area2D" parent="StaticBodyCauldron"]
 
-transform/pos = Vector2( 223.555, 268.508 )
+transform/pos = Vector2( 198.555, 263.508 )
 z/z = 2000
 input/pickable = true
 shapes/0/shape = SubResource( 9 )
@@ -1445,29 +1452,43 @@ trigger = false
 _update_shape_index = 0
 __meta__ = { "_edit_lock_":true }
 
+[node name="player" type="SamplePlayer2D" parent="StaticBodyCauldron/cauldron"]
+
+transform/pos = Vector2( 0, -240 )
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 5
+config/samples = SubResource( 10 )
+config/pitch_random = 0.0
+
 [node name="Area2D" type="Area2D" parent="."]
 
 transform/pos = Vector2( 1354.94, 1609.44 )
 input/pickable = true
-shapes/0/shape = SubResource( 10 )
+shapes/0/shape = SubResource( 11 )
 shapes/0/transform = Matrix32( 17.5677, 0, 0, 10.2909, 2.84498, 224.787 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 20 )
+script/script = ExtResource( 22 )
 need_to_collect = 50
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 
 transform/pos = Vector2( 2.84498, 224.787 )
 transform/scale = Vector2( 17.5677, 10.2909 )
-shape = SubResource( 10 )
+shape = SubResource( 11 )
 trigger = false
 _update_shape_index = 0
 
 [connection signal="timeout" from="spawn/timer" to="spawn" method="_on_timer_timeout"]
+
+[connection signal="body_enter" from="StaticBodyCauldron/cauldron" to="StaticBodyCauldron/cauldron" method="_on_cauldron_body_enter"]
 
 [connection signal="body_enter" from="Area2D" to="Area2D" method="_on_Area2D_body_enter"]
 

@@ -24,6 +24,10 @@ var mirrored = false
 var dmg_timer = 1
 var invincible_time = 0.15
 var invincible_timer = 0
+
+var knocked_time = 1.0
+var knocked_timer = 0
+
 var dead = false
 
 var speed_limit = 1500
@@ -37,6 +41,17 @@ func _ready():
 	player = get_node("player")
 
 func _fixed_process(delta):
+	if(dead):
+		var corpse = dead_body.instance()
+		corpse.set_global_pos(get_global_pos())
+		if(!look_right):
+			corpse.set_rot(-PI)
+		get_tree().get_current_scene().add_child(corpse)
+		corpse.get_node("dead_r").set_linear_velocity(get_linear_velocity())
+		corpse.get_node("dead_l").set_linear_velocity(get_linear_velocity()*(1+(randf()-0.5)*0.8))
+		queue_free()
+		return
+	
 	if(get_linear_velocity().length() > speed_limit):
 		print("Woooaaaaaaaa!")
 		set_linear_velocity(get_linear_velocity().normalized()*speed_limit)
@@ -51,6 +66,9 @@ func _fixed_process(delta):
 	
 	if(invincible_timer > 0):
 		invincible_timer-=delta
+		
+	if(knocked_timer > 0):
+		knocked_timer-=delta
 	
 	if( (randi()%700) <= 1 ):
 		var sound_id = player.play("reptile_voice")
@@ -76,7 +94,7 @@ func _fixed_process(delta):
 	
 	var impulse = (Vector2(direction.x*speed, 0) - Vector2(get_linear_velocity().x,0))*get_mass()
 	#print("m ",get_linear_velocity().x, impulse)
-	apply_impulse(Vector2(0,0), impulse)
+	apply_impulse(Vector2(0,0), impulse*(1-min(2*knocked_timer/knocked_time, 1)))
 	if(look_right):
 		get_node("body").set_scale(Vector2(1,1))
 		if(mirrored):
@@ -120,8 +138,14 @@ func on_damage(dmg):
 	if(dmg > 5 && invincible_timer > 0):
 		return false
 	invincible_timer = invincible_time
-	
+	knocked_timer = knocked_time
 	health -= dmg
+	
+	if(look_right):
+		apply_impulse(Vector2(0,0), Vector2(-5000, 0))
+	else:
+		apply_impulse(Vector2(0,0), Vector2(5000, 0))
+	
 	#var old_text = ""
 	#if(dmg_timer > 0):
 	#	old_text = get_node("dmg").get_text()
@@ -130,10 +154,4 @@ func on_damage(dmg):
 	#print("uffff ", dmg)
 	if(health < 0 && !dead):
 		dead = true
-		var corpse = dead_body.instance()
-		corpse.set_global_pos(get_global_pos())
-		if(!look_right):
-			corpse.set_rot(-PI)
-		get_tree().get_current_scene().add_child(corpse)
-		queue_free()
 	return true

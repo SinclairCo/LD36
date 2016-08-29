@@ -1126,7 +1126,7 @@ __meta__ = { "_edit_lock_":true }
 
 [node name="monster" parent="." instance=ExtResource( 11 )]
 
-transform/pos = Vector2( -808.958, 298.477 )
+transform/pos = Vector2( -2839.86, 154.636 )
 
 [node name="particles" type="Node2D" parent="."]
 
@@ -1443,7 +1443,7 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 19 )
-need_to_collect = 20
+need_to_collect = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodyCauldron/cauldron"]
 

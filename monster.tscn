@@ -18,8 +18,8 @@ radius = 36.0023
 [sub_resource type="CapsuleShape2D" id=2]
 
 custom_solver_bias = 0.0
-radius = 23.6645
-height = 259.393
+radius = 34.4448
+height = 235.133
 
 [sub_resource type="Animation" id=3]
 
@@ -293,7 +293,7 @@ shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, -14.084, 58.0966 )
 shapes/0/trigger = false
 shapes/1/shape = SubResource( 2 )
-shapes/1/transform = Matrix32( 0.25671, 0.966488, -0.966488, 0.25671, 2.64079, 4.40127 )
+shapes/1/transform = Matrix32( 0.232911, 0.972498, -0.972498, 0.232911, -8.4535, 11.4955 )
 shapes/1/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -323,20 +323,17 @@ _update_shape_index = 0
 
 [node name="body_collider" type="CollisionShape2D" parent="."]
 
-transform/pos = Vector2( 2.64079, 4.40127 )
-transform/rot = -75.1251
+transform/pos = Vector2( -8.4535, 11.4955 )
+transform/rot = -76.5315
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 1
 
 [node name="body" type="Node2D" parent="."]
 
-transform/pos = Vector2( -10.3276, -1.19164 )
-
 [node name="thigh_b" type="Sprite" parent="body"]
 
-transform/pos = Vector2( -33.2995, 13.3944 )
-transform/rot = -33.3877
+transform/pos = Vector2( -33.2995, 22.3944 )
 texture = ExtResource( 2 )
 offset = Vector2( 20.0355, 10.5863 )
 
@@ -348,34 +345,29 @@ offset = Vector2( -22.6115, 19.8503 )
 
 [node name="body" type="Sprite" parent="body"]
 
-transform/rot = 6.2185
 texture = ExtResource( 4 )
 
 [node name="thigh" type="Sprite" parent="body"]
 
 transform/pos = Vector2( -33.2995, 23.1889 )
-transform/rot = 11.042
 texture = ExtResource( 2 )
 offset = Vector2( 20.0355, 9.79187 )
 
 [node name="foot" type="Sprite" parent="body/thigh"]
 
-transform/pos = Vector2( 45.3309, 26.3877 )
-transform/rot = -26.1235
+transform/pos = Vector2( 46.8714, 22.6412 )
 texture = ExtResource( 3 )
 offset = Vector2( -21.8171, 19.0559 )
 
 [node name="tail" type="Sprite" parent="body"]
 
-transform/pos = Vector2( -81.7597, 35.8997 )
-transform/rot = -14.0108
+transform/pos = Vector2( -76.9931, 25.1749 )
 texture = ExtResource( 5 )
 offset = Vector2( -42.2243, 3.97622 )
 
 [node name="head" type="Sprite" parent="body"]
 
-transform/pos = Vector2( 78.3179, -42.7488 )
-transform/rot = 1.5165
+transform/pos = Vector2( 83.8789, -34.4073 )
 texture = ExtResource( 6 )
 offset = Vector2( 24.7424, 4.65289 )
 

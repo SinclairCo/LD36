@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=1]
+[gd_scene load_steps=31 format=1]
 
 [ext_resource path="res://sprites/spikes.png" type="Texture" id=1]
 [ext_resource path="res://banana.tscn" type="PackedScene" id=2]
@@ -15,10 +15,11 @@
 [ext_resource path="res://sound/music.ogg" type="AudioStream" id=13]
 [ext_resource path="res://spawn.gd" type="Script" id=14]
 [ext_resource path="res://player.tscn" type="PackedScene" id=15]
-[ext_resource path="res://sprites/cauldron_f.png" type="Texture" id=16]
-[ext_resource path="res://sprites/cauldron_B.png" type="Texture" id=17]
-[ext_resource path="res://cauldron.gd" type="Script" id=18]
-[ext_resource path="res://spikes.gd" type="Script" id=19]
+[ext_resource path="res://effects/fireeffect.png" type="Texture" id=16]
+[ext_resource path="res://sprites/cauldron_f.png" type="Texture" id=17]
+[ext_resource path="res://sprites/cauldron_B.png" type="Texture" id=18]
+[ext_resource path="res://cauldron.gd" type="Script" id=19]
+[ext_resource path="res://spikes.gd" type="Script" id=20]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -74,6 +75,8 @@ extents = Vector2( 14.716, 12.1934 )
 
 [node name="Game_Entities" type="Node2D" parent="."]
 
+editor/display_folded = true
+
 [node name="Sprite" type="Sprite" parent="Game_Entities"]
 
 transform/pos = Vector2( 1361.98, 1865.49 )
@@ -89,7 +92,6 @@ transform/pos = Vector2( -4018.08, -457.786 )
 
 [node name="Foundation" type="Node2D" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 181.25, 528.016 )
 z/z = 502
 z/relative = false
@@ -207,7 +209,6 @@ __meta__ = { "_edit_lock_":true }
 
 [node name="StaticBodyFND" type="StaticBody2D" parent="Foundation"]
 
-editor/display_folded = true
 input/pickable = false
 shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 1.57551, 0, 0, 2.90896, -582.85, 18.9785 )
@@ -227,6 +228,7 @@ z/z = 3
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
+__meta__ = { "_edit_lock_":true }
 
 [node name="Sprite 3" type="Sprite" parent="Foundation/StaticBodyFND"]
 
@@ -237,6 +239,7 @@ texture = ExtResource( 4 )
 
 transform/pos = Vector2( 595, 252 )
 texture = ExtResource( 4 )
+__meta__ = { "_edit_lock_":true }
 
 [node name="Sprite1" type="Sprite" parent="Foundation"]
 
@@ -287,7 +290,6 @@ texture = ExtResource( 4 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Foundation"]
 
-editor/display_folded = true
 transform/pos = Vector2( -2567.56, 151.883 )
 transform/rot = -14.789
 input/pickable = false
@@ -317,7 +319,6 @@ __meta__ = { "_edit_lock_":true }
 
 [node name="StaticBody2D1" type="StaticBody2D" parent="Foundation"]
 
-editor/display_folded = true
 transform/pos = Vector2( -3408.28, 127.156 )
 transform/rot = 11.7627
 input/pickable = false
@@ -347,7 +348,6 @@ __meta__ = { "_edit_lock_":true }
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="Foundation"]
 
-editor/display_folded = true
 transform/pos = Vector2( -4128.45, 318.79 )
 transform/rot = 17.7056
 input/pickable = false
@@ -377,7 +377,6 @@ __meta__ = { "_edit_lock_":true }
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Foundation"]
 
-editor/display_folded = true
 transform/pos = Vector2( -5503.89, 124.065 )
 transform/rot = -9.538
 input/pickable = false
@@ -437,7 +436,6 @@ __meta__ = { "_edit_lock_":true }
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="Foundation"]
 
-editor/display_folded = true
 transform/pos = Vector2( -4783.72, 287.881 )
 transform/rot = -16.8589
 input/pickable = false
@@ -502,7 +500,6 @@ texture = ExtResource( 3 )
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="Foundation"]
 
-editor/display_folded = true
 transform/pos = Vector2( 1211.23, -1248.15 )
 transform/rot = 83.0436
 transform/scale = Vector2( 1.26661, 1.25035 )
@@ -716,6 +713,7 @@ transform/scale = Vector2( 0.955487, 0.839957 )
 z/z = 1
 texture = ExtResource( 5 )
 modulate = Color( 0.816406, 0.816406, 0.816406, 1 )
+__meta__ = { "_edit_lock_":true }
 
 [node name="Sprite1" type="Sprite" parent="BG_decor"]
 
@@ -861,6 +859,7 @@ modulate = Color( 0.816406, 0.816406, 0.816406, 1 )
 
 [node name="platforms" type="Node2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 62.2725, 362.805 )
 z/relative = false
 
@@ -999,7 +998,6 @@ __meta__ = { "_edit_lock_":true }
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="platforms"]
 
-editor/display_folded = true
 transform/pos = Vector2( -3827.59, -673.828 )
 transform/scale = Vector2( 0.519092, 1.15085 )
 input/pickable = false
@@ -1033,7 +1031,6 @@ __meta__ = { "_edit_lock_":true }
 
 [node name="StaticBody2D7" type="StaticBody2D" parent="platforms"]
 
-editor/display_folded = true
 transform/pos = Vector2( -3339.61, -725.767 )
 transform/rot = 0.338877
 transform/scale = Vector2( 0.445756, 1.36242 )
@@ -1068,7 +1065,6 @@ __meta__ = { "_edit_lock_":true }
 
 [node name="StaticBody2D1" type="StaticBody2D" parent="platforms"]
 
-editor/display_folded = true
 transform/pos = Vector2( -2444.09, -443.06 )
 transform/scale = Vector2( 0.643131, 1.36242 )
 input/pickable = false
@@ -1127,6 +1123,7 @@ transform/pos = Vector2( -808.958, 298.477 )
 
 [node name="particles" type="Node2D" parent="."]
 
+editor/display_folded = true
 __meta__ = { "_edit_lock_":true }
 
 [node name="Particles2D" type="Particles2D" parent="particles"]
@@ -1286,19 +1283,97 @@ trigger = false
 _update_shape_index = 0
 __meta__ = { "_edit_lock_":true }
 
-[node name="Sprite" type="Sprite" parent="StaticBodyCauldron"]
+[node name="Particles2D" type="Particles2D" parent="StaticBodyCauldron"]
+
+visibility/opacity = 0.36
+transform/pos = Vector2( 148.974, 447.609 )
+transform/scale = Vector2( 1.37841, 0.775869 )
+z/z = 1600
+config/amount = 11
+config/lifetime = 1.0
+config/texture = ExtResource( 16 )
+params/direction = 179.22
+params/spread = 81.6958
+params/linear_velocity = 168.81
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 175.814
+params/gravity_strength = 99.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+
+[node name="Particles2D1" type="Particles2D" parent="StaticBodyCauldron"]
+
+visibility/opacity = 0.69
+transform/pos = Vector2( 378.876, 425.194 )
+transform/scale = Vector2( 1.29339, 0.989339 )
+z/z = 1600
+config/amount = 5
+config/lifetime = 0.952029
+config/texture = ExtResource( 16 )
+params/direction = 179.22
+params/spread = 81.6958
+params/linear_velocity = 250.433
+params/spin_velocity = 0.0
+params/orbit_velocity = -1.0
+params/gravity_direction = 175.814
+params/gravity_strength = 99.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 0.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+
+[node name="Particles2D2" type="Particles2D" parent="StaticBodyCauldron"]
+
+visibility/opacity = 0.8
+transform/pos = Vector2( 15.6582, 407.509 )
+transform/scale = Vector2( 1.20837, 1.24441 )
+z/z = 1600
+config/amount = 5
+config/lifetime = 0.952029
+config/texture = ExtResource( 16 )
+params/direction = 179.22
+params/spread = 81.6958
+params/linear_velocity = 250.433
+params/spin_velocity = 0.0
+params/orbit_velocity = 1.0
+params/gravity_direction = 175.814
+params/gravity_strength = 99.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 0.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+
+[node name="cauldron_Front" type="Sprite" parent="StaticBodyCauldron"]
 
 transform/pos = Vector2( 194, 188.149 )
-z/z = 1900
+z/z = 1000
 z/relative = false
-texture = ExtResource( 16 )
+texture = ExtResource( 17 )
 __meta__ = { "_edit_lock_":true }
 
 [node name="Sprite1" type="Sprite" parent="StaticBodyCauldron"]
 
 transform/pos = Vector2( 192.15, -24.6716 )
 z/z = -5
-texture = ExtResource( 17 )
+texture = ExtResource( 18 )
 __meta__ = { "_edit_lock_":true }
 
 [node name="backwall" type="StaticBody2D" parent="StaticBodyCauldron"]
@@ -1306,10 +1381,10 @@ __meta__ = { "_edit_lock_":true }
 transform/pos = Vector2( -579.25, -62.016 )
 input/pickable = false
 shapes/0/shape = SubResource( 8 )
-shapes/0/transform = Matrix32( 4.70295, 0, 0, 128.514, 1098.56, 1073.26 )
+shapes/0/transform = Matrix32( 5.7255, 0, 0, 128.514, 1111.85, 1073.26 )
 shapes/0/trigger = false
 shapes/1/shape = SubResource( 8 )
-shapes/1/transform = Matrix32( -0.00171046, -5.83656, 454.831, -0.133293, -2035.79, -2022.72 )
+shapes/1/transform = Matrix32( -0.00171116, -5.83656, 454.831, -0.133347, -2035.79, -2022.72 )
 shapes/1/trigger = false
 shapes/2/shape = SubResource( 8 )
 shapes/2/transform = Matrix32( 5.81352, -0.518065, 19.7847, 222.016, 998.747, -2620.15 )
@@ -1324,8 +1399,8 @@ __meta__ = { "_edit_lock_":true }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodyCauldron/backwall"]
 
-transform/pos = Vector2( 1098.56, 1073.26 )
-transform/scale = Vector2( 4.70295, 128.514 )
+transform/pos = Vector2( 1111.85, 1073.26 )
+transform/scale = Vector2( 5.7255, 128.514 )
 shape = SubResource( 8 )
 trigger = false
 _update_shape_index = 0
@@ -1360,7 +1435,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 18 )
+script/script = ExtResource( 19 )
 need_to_collect = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodyCauldron/cauldron"]
@@ -1368,6 +1443,7 @@ need_to_collect = 20
 shape = SubResource( 9 )
 trigger = false
 _update_shape_index = 0
+__meta__ = { "_edit_lock_":true }
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -1380,7 +1456,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 19 )
+script/script = ExtResource( 20 )
 need_to_collect = 50
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

@@ -48,7 +48,7 @@ func _fixed_process(delta):
 			corpse.set_rot(-PI)
 		get_tree().get_current_scene().add_child(corpse)
 		corpse.get_node("dead_r").set_linear_velocity(get_linear_velocity())
-		corpse.get_node("dead_l").set_linear_velocity(get_linear_velocity()*(1+(randf()-0.5)*0.8))
+		#corpse.get_node("dead_l").set_linear_velocity(get_linear_velocity()*(1+(randf()-0.5)*0.8))
 		queue_free()
 		return
 	

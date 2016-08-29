@@ -25,6 +25,7 @@ var death_time = 2
 var pick_dist = 400
 
 var anim
+var player
 
 var dragging_thing = null
 
@@ -32,6 +33,8 @@ func _ready():
 	set_fixed_process(true)
 	max_arm_length = (get_node("max_arm_length").get_global_pos() - get_node("body/arms/shoulder").get_global_pos()).length()
 	anim = get_node("body/anim")
+	player = get_node("player")
+	randomize()
 	#set_process_input(true)
 	pass
 	
@@ -130,7 +133,7 @@ func _fixed_process(delta):
 	if(Input.is_action_pressed("pick")):
 		if( (dragging_thing == null || !dragging_thing.get_ref() ) && (global_aim_pos - arms_base_pos).length() < pick_dist):
 			var pick_res_arr = get_world_2d().get_direct_space_state().intersect_point(global_aim_pos, 32, [], 2147483647, 31)
-			print(pick_res_arr)
+			#print(pick_res_arr)
 			for picked_res in pick_res_arr :
 				var picked_obj = picked_res.collider
 				if(picked_obj.get_groups().has("corpse")):
@@ -154,11 +157,18 @@ func on_damage(dmg):
 			almost_dead = true
 			get_node("mace_joint").queue_free()
 			get_node("mace").add_to_group("corpse") #just for fun
+			player.play("lost_something")
 	if(health < -20):
 		if(!dead):
 			dead = true
 			get_node("body/anim").play("death")
 			print("You are dead")
+			var rand = randi()%2
+			print(rand)
+			if(rand == 0):
+				player.play("player_death")
+			else:
+				player.play("player_death2")
 
 #func _input(event):
 #	if (event.type==InputEvent.MOUSE_BUTTON && event.is_pressed()):

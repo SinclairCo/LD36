@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=16 format=1]
 
 [ext_resource path="res://monster.gd" type="Script" id=1]
 [ext_resource path="res://sprites/reptile_leg_up.png" type="Texture" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://sprites/reptile_torso.png" type="Texture" id=4]
 [ext_resource path="res://sprites/reptile_tail.png" type="Texture" id=5]
 [ext_resource path="res://sprites/reptile_head.png" type="Texture" id=6]
+[ext_resource path="res://sound/bite.wav" type="Sample" id=7]
+[ext_resource path="res://sound/reptile_death.wav" type="Sample" id=8]
+[ext_resource path="res://sound/reptile_voice.wav" type="Sample" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -277,6 +280,12 @@ tracks/15/interp = 1
 tracks/15/imported = false
 tracks/15/keys = { "times":FloatArray( 0, 0.15, 0.3, 0.45 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":0, "values":[ 0.0, 0.0, 0.0, 0.0 ] }
 
+[sub_resource type="SampleLibrary" id=6]
+
+samples/bite = { "db":0.0, "pitch":1.0, "sample":ExtResource( 7 ) }
+samples/reptile_death = { "db":0.0, "pitch":1.0, "sample":ExtResource( 8 ) }
+samples/reptile_voice = { "db":0.0, "pitch":1.0, "sample":ExtResource( 9 ) }
+
 [node name="monster" type="RigidBody2D" groups=[ "damageable" ]]
 
 input/pickable = false
@@ -402,5 +411,16 @@ playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
+
+[node name="player" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 6 )
+config/pitch_random = 0.1
 
 

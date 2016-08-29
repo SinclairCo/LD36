@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=1]
+[gd_scene load_steps=33 format=1]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/player_shoulder.png" type="Texture" id=2]
@@ -13,11 +13,15 @@
 [ext_resource path="res://sprites/player_arm.png" type="Texture" id=11]
 [ext_resource path="res://weapon.gd" type="Script" id=12]
 [ext_resource path="res://sprites/male_bat.png" type="Texture" id=13]
-[ext_resource path="res://blocktiles/healthbar_background.png" type="Texture" id=14]
-[ext_resource path="res://blocktiles/healthbar_bar.png" type="Texture" id=15]
-[ext_resource path="res://blocktiles/soupbar_back.png" type="Texture" id=16]
-[ext_resource path="res://blocktiles/soupbar_frontcover.png" type="Texture" id=17]
-[ext_resource path="res://blocktiles/soupbar_soup.png" type="Texture" id=18]
+[ext_resource path="res://sound/hit.wav" type="Sample" id=14]
+[ext_resource path="res://blocktiles/healthbar_background.png" type="Texture" id=15]
+[ext_resource path="res://blocktiles/healthbar_bar.png" type="Texture" id=16]
+[ext_resource path="res://blocktiles/soupbar_back.png" type="Texture" id=17]
+[ext_resource path="res://blocktiles/soupbar_frontcover.png" type="Texture" id=18]
+[ext_resource path="res://blocktiles/soupbar_soup.png" type="Texture" id=19]
+[ext_resource path="res://sound/lost_something.wav" type="Sample" id=20]
+[ext_resource path="res://sound/player_death.wav" type="Sample" id=21]
+[ext_resource path="res://sound/player_death2.wav" type="Sample" id=22]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -666,6 +670,16 @@ height = 90.8517
 custom_solver_bias = 0.0
 extents = Vector2( 10, 24.8099 )
 
+[sub_resource type="SampleLibrary" id=9]
+
+samples/hit = { "db":0.0, "pitch":1.0, "sample":ExtResource( 14 ) }
+
+[sub_resource type="SampleLibrary" id=10]
+
+samples/lost_something = { "db":0.0, "pitch":1.0, "sample":ExtResource( 20 ) }
+samples/player_death = { "db":0.0, "pitch":1.0, "sample":ExtResource( 21 ) }
+samples/player_death2 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 22 ) }
+
 [node name="player" type="RigidBody2D" groups=[ "damageable" ]]
 
 input/pickable = false
@@ -736,6 +750,8 @@ softness = 0.0
 
 [node name="body" type="Node2D" parent="."]
 
+editor/display_folded = true
+
 [node name="anim" type="AnimationPlayer" parent="body"]
 
 playback/process_mode = 1
@@ -785,6 +801,7 @@ texture = ExtResource( 5 )
 
 [node name="thigh_b" type="Sprite" parent="body"]
 
+editor/display_folded = true
 transform/pos = Vector2( -7.86032, 21.672 )
 texture = ExtResource( 6 )
 offset = Vector2( -9.13968, 22.328 )
@@ -811,6 +828,7 @@ __meta__ = { "_edit_bone_":true }
 
 [node name="thigh" type="Sprite" parent="body"]
 
+editor/display_folded = true
 transform/pos = Vector2( 40.0262, 17.5842 )
 texture = ExtResource( 6 )
 offset = Vector2( -8.0262, 26.4158 )
@@ -842,6 +860,7 @@ texture = ExtResource( 10 )
 
 [node name="arms" type="Node2D" parent="body"]
 
+editor/display_folded = true
 transform/pos = Vector2( 43, -41 )
 z/z = 2
 
@@ -891,6 +910,7 @@ _update_shape_index = 0
 
 [node name="mace" type="RigidBody2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( -170.895, -79.8697 )
 input/pickable = false
 shapes/0/shape = SubResource( 7 )
@@ -940,8 +960,20 @@ shape = SubResource( 8 )
 trigger = false
 _update_shape_index = 1
 
+[node name="player" type="SamplePlayer2D" parent="mace"]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 9 )
+config/pitch_random = 0.0
+
 [node name="ui" type="CanvasLayer" parent="."]
 
+editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -965,9 +997,9 @@ range/page = 0.0
 range/value = 100.0
 range/exp_edit = false
 range/rounded = false
-texture/under = ExtResource( 14 )
+texture/under = ExtResource( 15 )
 texture/over = null
-texture/progress = ExtResource( 15 )
+texture/progress = ExtResource( 16 )
 radial_fill/initial_angle = 1.0
 radial_fill/fill_degrees = 360.0
 radial_fill/center_offset = Vector2( 0, 0 )
@@ -990,12 +1022,23 @@ range/page = 0.0
 range/value = 0.0
 range/exp_edit = false
 range/rounded = false
-texture/under = ExtResource( 16 )
-texture/over = ExtResource( 17 )
-texture/progress = ExtResource( 18 )
+texture/under = ExtResource( 17 )
+texture/over = ExtResource( 18 )
+texture/progress = ExtResource( 19 )
 mode = 3
 radial_fill/initial_angle = 1.0
 radial_fill/fill_degrees = 360.0
 radial_fill/center_offset = Vector2( 0, 0 )
+
+[node name="player" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 10 )
+config/pitch_random = 0.0
 
 

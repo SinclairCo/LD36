@@ -22,6 +22,7 @@ func do_pickable(picker):
 			timer.start()
 			picked = true
 			anim.play("hide")
+			get_node("player").play("eat_banana")
 		else:
 			anim.play("shake")
 

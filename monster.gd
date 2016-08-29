@@ -29,10 +29,12 @@ var dead = false
 var speed_limit = 1500
 
 var anim
+var player
 
 func _ready():
 	set_fixed_process(true)
 	anim = get_node("anim")
+	player = get_node("player")
 
 func _fixed_process(delta):
 	if(get_linear_velocity().length() > speed_limit):
@@ -49,6 +51,10 @@ func _fixed_process(delta):
 	
 	if(invincible_timer > 0):
 		invincible_timer-=delta
+	
+	if( (randi()%700) <= 1 ):
+		var sound_id = player.play("reptile_voice")
+		player.voice_set_volume_scale_db(sound_id, (randf()-0.5)*0.2)
 	
 	var target_pos
 	if(get_tree().get_current_scene().has_node("player")):
@@ -97,6 +103,7 @@ func _fixed_process(delta):
 				var new_blood = blood.instance()
 				new_blood.set_global_pos(get_node("body/blood_bite").get_global_pos())
 				get_tree().get_current_scene().add_child(new_blood)
+				player.play("bite")
 				
 	if(attack_cooldown >= 0):
 		attack_cooldown -= delta
@@ -111,7 +118,7 @@ func mirror_collision(collider):
 func on_damage(dmg):
 	
 	if(dmg > 5 && invincible_timer > 0):
-		return
+		return false
 	invincible_timer = invincible_time
 	
 	health -= dmg
@@ -129,3 +136,4 @@ func on_damage(dmg):
 			corpse.set_rot(-PI)
 		get_tree().get_current_scene().add_child(corpse)
 		queue_free()
+	return true

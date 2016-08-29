@@ -26,10 +26,15 @@ func _integrate_forces(state):
 			#print("dmg fac ", dmg_factor.length()/100)
 			var dmg = dmg_factor.length()/100
 			if(dmg > 10):
-				body.on_damage(dmg)
-				var new_blood = blood.instance()
-				new_blood.set_global_pos(contact_pos)
-				get_tree().get_current_scene().add_child(new_blood)
+				if(body.on_damage(dmg)):
+					var new_blood = blood.instance()
+					new_blood.set_global_pos(contact_pos)
+					get_tree().get_current_scene().add_child(new_blood)
+					var sample = get_node("player")
+					var sound_id = sample.play("hit")
+					#sample.set_random_pitch_scale(10)
+					sample.voice_set_pitch_scale(sound_id, (randf()-0.5)*0.5+1)
+					sample.voice_set_volume_scale_db(sound_id, 1+dmg*dmg/100)
 	
 #func _draw():
 #	if(contact_pos != null):

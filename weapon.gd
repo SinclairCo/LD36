@@ -24,7 +24,7 @@ func _integrate_forces(state):
 			var offset = contact_pos - get_global_pos()
 			dmg_factor = get_linear_velocity() + (get_angular_velocity()*offset).rotated(PI/2)
 			#print("dmg fac ", dmg_factor.length()/100)
-			var dmg = dmg_factor.length()/100
+			var dmg = dmg_factor.length()/100*1.05
 			if(dmg > 10):
 				if(body.on_damage(dmg)):
 					var new_blood = blood.instance()

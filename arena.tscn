@@ -503,8 +503,8 @@ texture = ExtResource( 3 )
 [node name="StaticBody2D6" type="StaticBody2D" parent="Foundation"]
 
 editor/display_folded = true
-transform/pos = Vector2( 1245.24, -1239.99 )
-transform/rot = 90.1792
+transform/pos = Vector2( 1211.23, -1248.15 )
+transform/rot = 83.0436
 transform/scale = Vector2( 1.26661, 1.25035 )
 input/pickable = false
 shapes/0/shape = SubResource( 4 )
@@ -741,7 +741,7 @@ modulate = Color( 0.757813, 0.818359, 1, 1 )
 
 [node name="Sprite10" type="Sprite" parent="BG_decor"]
 
-transform/pos = Vector2( -909.892, -104.248 )
+transform/pos = Vector2( -907.676, -104.248 )
 transform/rot = -88.4977
 transform/scale = Vector2( 1.52217, 1.85934 )
 texture = ExtResource( 6 )
@@ -899,12 +899,11 @@ __meta__ = { "_edit_lock_":true }
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="platforms"]
 
-editor/display_folded = true
 transform/pos = Vector2( -624.728, -667.102 )
 transform/scale = Vector2( 0.445756, 1.36242 )
 input/pickable = false
 shapes/0/shape = SubResource( 6 )
-shapes/0/transform = Matrix32( -145.446, 1.27153e-05, -1.5795e-07, -1.80674, -6.87109, 43.9484 )
+shapes/0/transform = Matrix32( -145.446, 1.27153e-05, -3.57562e-07, -4.09004, -6.87109, 31.5429 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -916,9 +915,9 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/StaticBody2D2"]
 
-transform/pos = Vector2( -6.87109, 43.9484 )
+transform/pos = Vector2( -6.87109, 31.5429 )
 transform/rot = 180.0
-transform/scale = Vector2( 145.446, 1.80674 )
+transform/scale = Vector2( 145.446, 4.09004 )
 shape = SubResource( 6 )
 trigger = false
 _update_shape_index = 0
@@ -967,12 +966,11 @@ __meta__ = { "_edit_lock_":true }
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="platforms"]
 
-editor/display_folded = true
 transform/pos = Vector2( -950.408, -657.952 )
 transform/scale = Vector2( 0.445756, 1.36242 )
 input/pickable = false
 shapes/0/shape = SubResource( 6 )
-shapes/0/transform = Matrix32( -145.446, 1.27153e-05, -1.5795e-07, -1.80674, -6.87109, 43.9484 )
+shapes/0/transform = Matrix32( -145.446, 1.27153e-05, -3.98509e-07, -4.55841, -6.87109, 28.9982 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -984,9 +982,9 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/StaticBody2D5"]
 
-transform/pos = Vector2( -6.87109, 43.9484 )
+transform/pos = Vector2( -6.87109, 28.9982 )
 transform/rot = 180.0
-transform/scale = Vector2( 145.446, 1.80674 )
+transform/scale = Vector2( 145.446, 4.55841 )
 shape = SubResource( 6 )
 trigger = false
 _update_shape_index = 0

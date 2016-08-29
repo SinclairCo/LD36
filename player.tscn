@@ -676,9 +676,9 @@ samples/hit = { "db":0.0, "pitch":1.0, "sample":ExtResource( 14 ) }
 
 [sub_resource type="SampleLibrary" id=10]
 
-samples/lost_something = { "db":0.0, "pitch":1.0, "sample":ExtResource( 20 ) }
-samples/player_death = { "db":0.0, "pitch":1.0, "sample":ExtResource( 21 ) }
-samples/player_death2 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 22 ) }
+samples/lost_something = { "db":-3.0, "pitch":1.0, "sample":ExtResource( 20 ) }
+samples/player_death = { "db":10.0, "pitch":1.0, "sample":ExtResource( 21 ) }
+samples/player_death2 = { "db":10.0, "pitch":1.0, "sample":ExtResource( 22 ) }
 
 [node name="player" type="RigidBody2D" groups=[ "damageable" ]]
 

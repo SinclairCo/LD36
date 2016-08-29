@@ -282,9 +282,9 @@ tracks/15/keys = { "times":FloatArray( 0, 0.15, 0.3, 0.45 ), "transitions":Float
 
 [sub_resource type="SampleLibrary" id=6]
 
-samples/bite = { "db":0.0, "pitch":1.0, "sample":ExtResource( 7 ) }
-samples/reptile_death = { "db":0.0, "pitch":1.0, "sample":ExtResource( 8 ) }
-samples/reptile_voice = { "db":0.0, "pitch":1.0, "sample":ExtResource( 9 ) }
+samples/bite = { "db":1.0, "pitch":1.0, "sample":ExtResource( 7 ) }
+samples/reptile_death = { "db":3.0, "pitch":1.0, "sample":ExtResource( 8 ) }
+samples/reptile_voice = { "db":2.0, "pitch":1.0, "sample":ExtResource( 9 ) }
 
 [node name="monster" type="RigidBody2D" groups=[ "damageable" ]]
 
